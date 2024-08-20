@@ -51,21 +51,32 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text('Developer Profile'),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(148),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              blurRadius: 12,
-              spreadRadius: 2,
-              offset: Offset(4, 4),
+      body: Padding(
+        padding: const EdgeInsets.all(38.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(148),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 12,
+                    spreadRadius: 2,
+                    offset: Offset(4, 4),
+                  ),
+                ],
+              ),
+              child: Transform.scale(
+                scale: 1.2,
+                child: CircleAvatar(
+                  radius: 90,
+                  backgroundImage: AssetImage('assets/images/rdp.jpg'),
+                ),
+              ),
             ),
           ],
-        ),
-        child: CircleAvatar(
-          radius: 90,
-          backgroundImage: AssetImage('assets/images/rdp.jpg'),
         ),
       ),
     );
