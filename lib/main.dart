@@ -38,11 +38,11 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   Future<void> _launchURL(Uri url) async {
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+    //   if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+    //  } else {
+    //   throw 'Could not launch $url';
+    // }
   }
 
   @override
@@ -52,6 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text('Developer Profile'),
       ),
       body: Container(
+        color: Colors.blue,
         child: Column(
           children: [
             Row(
@@ -84,12 +85,41 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const SizedBox(height: 100),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 IconButton(
+                  iconSize: 60,
                   icon: Icon(Icons.email),
                   onPressed: () {
                     _launchURL(
                       Uri(scheme: 'mailto', path: 'example@example.com'),
+                    );
+                  },
+                ),
+                IconButton(
+                  iconSize: 60,
+                  icon: Icon(Icons.web),
+                  onPressed: () {
+                    _launchURL(
+                      Uri.parse('https://linkedin.com/'),
+                    );
+                  },
+                ),
+                IconButton(
+                  iconSize: 60,
+                  icon: Icon(Icons.code),
+                  onPressed: () {
+                    _launchURL(
+                      Uri.parse('https://GitHub.com/'),
+                    );
+                  },
+                ),
+                IconButton(
+                  iconSize: 60,
+                  icon: Icon(Icons.facebook_rounded),
+                  onPressed: () {
+                    _launchURL(
+                      Uri.parse('https://facebook.com/'),
                     );
                   },
                 ),
