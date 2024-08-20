@@ -32,6 +32,11 @@ class MainApp extends StatelessWidget {
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
   Future<void> _launchURL(Uri url) async {
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
@@ -41,40 +46,59 @@ class ProfilePage extends StatefulWidget {
   }
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Developer Profile'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(38.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: Container(
+        child: Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(148),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    blurRadius: 12,
-                    spreadRadius: 2,
-                    offset: Offset(4, 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  height: 200,
+                  width: 200,
+                  margin: EdgeInsets.only(top: 100),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(148),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 12,
+                        spreadRadius: 60,
+                        offset: Offset(4, 4),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: Transform.scale(
-                scale: 1.2,
-                child: CircleAvatar(
-                  radius: 90,
-                  backgroundImage: AssetImage('assets/images/rdp.jpg'),
+                  child: Transform.scale(
+                    scale: 1.6,
+                    child: CircleAvatar(
+                      radius: 90,
+                      backgroundImage: AssetImage('assets/images/rdp.jpg'),
+                    ),
+                  ),
                 ),
-              ),
+              ],
+            ),
+            const SizedBox(height: 100),
+            Row(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.email),
+                  onPressed: () {
+                    _launchURL(
+                      Uri(scheme: 'mailto', path: 'example@example.com'),
+                    );
+                  },
+                ),
+              ],
+            ),
+            Text(
+              'Flutter developer with experience in building beautiful and performant mobile apps.',
+              style: TextStyle(fontSize: 25),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
